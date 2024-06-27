@@ -21,6 +21,9 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
@@ -34,14 +37,13 @@ import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClassArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Belongings implements Iterable<Item> {
 
@@ -73,6 +75,13 @@ public class Belongings implements Iterable<Item> {
 		
 		backpack = new Backpack();
 		backpack.owner = owner;
+
+		ScrollOfMagicMapping magicMapping = new ScrollOfMagicMapping();
+		magicMapping.quantity(25);
+		backpack.items.add(magicMapping);
+
+		RingOfWealth ringOfWealth = new RingOfWealth();
+		backpack.items.add(ringOfWealth);
 	}
 
 	public KindOfWeapon weapon = null;

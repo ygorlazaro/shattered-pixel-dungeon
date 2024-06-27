@@ -63,6 +63,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRage;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Corrupting;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Dagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gloves;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
@@ -138,6 +139,7 @@ public enum HeroClass {
 			}
 		}
 
+
 	}
 
 	public Badges.Badge masteryBadge() {
@@ -157,7 +159,11 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
-		(hero.belongings.weapon = new WornShortsword()).identify();
+		WornShortsword wornShortsword = new WornShortsword();
+		wornShortsword.enchant(new Corrupting());
+		wornShortsword.identify();
+		hero.belongings.weapon = wornShortsword;
+
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, stones);
@@ -185,7 +191,11 @@ public enum HeroClass {
 	}
 
 	private static void initRogue( Hero hero ) {
-		(hero.belongings.weapon = new Dagger()).identify();
+		Dagger dagger = new Dagger();
+		dagger.enchant(new Corrupting());
+		dagger.identify();
+
+		hero.belongings.weapon = dagger;
 
 		CloakOfShadows cloak = new CloakOfShadows();
 		(hero.belongings.artifact = cloak).identify();
@@ -203,8 +213,13 @@ public enum HeroClass {
 
 	private static void initHuntress( Hero hero ) {
 
-		(hero.belongings.weapon = new Gloves()).identify();
+		Gloves gloves = new Gloves();
+		gloves.identify();
+		gloves.enchant(new Corrupting());
+		hero.belongings.weapon = gloves;
+
 		SpiritBow bow = new SpiritBow();
+		bow.enchant(new Corrupting());
 		bow.identify().collect();
 
 		Dungeon.quickslot.setSlot(0, bow);
@@ -215,7 +230,10 @@ public enum HeroClass {
 
 	private static void initDuelist( Hero hero ) {
 
-		(hero.belongings.weapon = new Rapier()).identify();
+		Rapier rapier = new Rapier();
+		rapier.enchant(new Corrupting());
+		rapier.identify();
+		hero.belongings.weapon = rapier;
 		hero.belongings.weapon.activate(hero);
 
 		ThrowingSpike spikes = new ThrowingSpike();
